@@ -1,0 +1,80 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>vels onboarding platform</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/"><i class="bi bi-mortarboard-fill"></i> vels onboarding</a>
+        <div class="ms-auto">
+            <a class="btn btn-outline-light btn-sm me-2" href="/dashboard">dashboard</a>
+            <a class="btn btn-light btn-sm" href="/courses">courses</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero bg-primary text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">employee onboarding platform</h1>
+        <p class="lead">helping new employees onboard in 5 days instead of 14</p>
+        <a href="/courses" class="btn btn-light btn-lg mt-3">
+            <i class="bi bi-play-circle"></i> start learning
+        </a>
+    </div>
+</section>
+
+<section class="container my-5">
+    <h2 class="text-center mb-4">how it works</h2>
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <i class="bi bi-book display-4 text-primary"></i>
+            <h4>1. study courses</h4>
+            <p>watch video lessons, read materials, take tests</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <i class="bi bi-graph-up display-4 text-primary"></i>
+            <h4>2. track progress</h4>
+            <p>your progress is saved automatically</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <i class="bi bi-award display-4 text-primary"></i>
+            <h4>3. get certified</h4>
+            <p>receive certificate after completing all courses</p>
+        </div>
+    </div>
+</section>
+
+<section class="container my-5">
+    <h2 class="text-center mb-4">available courses</h2>
+    <div class="row">
+        <div class="col-md-4 mb-3" th:each="course : ${courses}">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${course.title}">course</h5>
+                    <p class="card-text text-muted" th:text="${course.description}">description</p>
+                    <span class="badge bg-warning" th:if="${course.mandatory}">mandatory</span>
+                </div>
+                <div class="card-footer bg-white">
+                    <a th:href="@{/courses/{id}(id=${course.id})}" class="btn btn-primary btn-sm w-100">
+                        view course
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-light py-4 mt-5">
+    <div class="container text-center text-muted">
+        <p>&copy; 2026 vels onboarding platform. made with spring boot.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# build
+target/
+*.jar
+*.war
+
+# ide
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# logs
+*.log
+
+# os
+.ds_store
+thumbs.db
+
+# secrets
+secrets.properties
+.env
+
+# локальные настройки
+application-local.yml

@@ -1,0 +1,57 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title th:text="${module.title}">module</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/"><i class="bi bi-mortarboard-fill"></i> vels onboarding</a>
+        <div class="ms-auto">
+            <a class="btn btn-outline-light btn-sm me-2" href="/courses">courses</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">home</a></li>
+            <li class="breadcrumb-item"><a href="/courses">courses</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/courses/{id}(id=${module.course.id})}" th:text="${module.course.title}">course</a></li>
+            <li class="breadcrumb-item active" th:text="${module.title}">module</li>
+        </ol>
+    </nav>
+
+    <h1 th:text="${module.title}">module title</h1>
+
+    <div class="list-group my-4">
+        <div th:each="lesson, iter : ${module.lessons}" class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="badge bg-primary me-2" th:text="${iter.index + 1}">1</span>
+                    <b th:text="${lesson.title}">lesson title</b>
+                    <span class="text-muted ms-2" th:if="${lesson.durationMinutes}">
+                        <i class="bi bi-clock"></i>
+                        <span th:text="${lesson.durationMinutes}">10</span> min
+                    </span>
+                </div>
+                <a th:href="@{/lessons/{id}(id=${lesson.id})}" class="btn btn-primary btn-sm">
+                    <i class="bi bi-play-circle"></i> watch
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${module.lessons.isEmpty()}" class="alert alert-info">
+        no lessons yet.
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

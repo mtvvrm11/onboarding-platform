@@ -1,0 +1,49 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>courses</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/"><i class="bi bi-mortarboard-fill"></i> vels onboarding</a>
+        <div class="ms-auto">
+            <a class="btn btn-outline-light btn-sm me-2" href="/dashboard">dashboard</a>
+            <a class="btn btn-light btn-sm" href="/courses">courses</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>courses</h1>
+        <a href="/courses/new" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> create course
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3" th:each="course : ${courses}">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 th:text="${course.title}">title</h5>
+                    <p class="text-muted" th:text="${course.description}">description</p>
+                    <span class="badge bg-warning" th:if="${course.mandatory}">mandatory</span>
+                </div>
+                <div class="card-footer">
+                    <a th:href="@{/courses/{id}(id=${course.id})}" class="btn btn-primary btn-sm w-100">
+                        <i class="bi bi-eye"></i> view
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

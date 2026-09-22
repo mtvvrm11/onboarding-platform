@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: vels-onboarding-platform
+
+  datasource:
+    url: jdbc:postgresql://localhost:5434/vels_onboarding
+    username: ${DB_USERNAME:admin}
+    password: ${DB_PASSWORD:admin123}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: false
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+  thymeleaf:
+    cache: false
+
+  mail:
+    host: smtp.yandex.ru
+    port: 465
+    username: ${YANDEX_USERNAME:}
+    password: ${YANDEX_APP_PASSWORD:}
+    properties:
+      mail:
+        transport:
+          protocol: smtps
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=1000,expireAfterWrite=1h
+
+server:
+  port: 8082
+
+logging:
+  level:
+    org.example: info
