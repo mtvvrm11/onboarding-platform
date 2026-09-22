@@ -147,7 +147,4 @@ mit license. see license file for details.
 
 ## author
 
-irina matveeva
-
 - github: https://github.com/mtvvrm11
-- linkedin: https://linkedin.com/in/mtvvrm
