@@ -1,4 +1,4 @@
-# vels onboarding platform
+# onboarding platform
 
 educational platform for employee onboarding.
 
